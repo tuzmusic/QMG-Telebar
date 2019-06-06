@@ -76,7 +76,8 @@
  * Add the default Metro packager port number
  */
 #ifndef RCT_METRO_PORT
-#define RCT_METRO_PORT 8081
+//#define RCT_METRO_PORT 8081
+#define RCT_METRO_PORT 19005
 #else
 // test if RCT_METRO_PORT is empty
 #define RCT_METRO_PORT_DO_EXPAND(VAL)  VAL ## 1
@@ -85,7 +86,8 @@
 // Only here if RCT_METRO_PORT is not defined
 // OR RCT_METRO_PORT is the empty string
 #undef RCT_METRO_PORT
-#define RCT_METRO_PORT 8081
+//#define RCT_METRO_PORT 8081
+#define RCT_METRO_PORT 19005
 #endif
 #endif
 

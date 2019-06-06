@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>E4DF28FB-9F4D-404E-A27A-C88B1DA7EBD6</key>
+		<key>40F00A2A-F7E4-488F-9849-47F6164CDE3F</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,11 +15,11 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>E4DF28FB-9F4D-404E-A27A-C88B1DA7EBD6.xcactivitylog</string>
+			<string>40F00A2A-F7E4-488F-9849-47F6164CDE3F.xcactivitylog</string>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>W</string>
+				<string>E</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>Telebar project</string>
@@ -30,13 +30,13 @@
 			<key>signature</key>
 			<string>Building workspace Telebar with scheme Telebar and configuration Debug</string>
 			<key>timeStartedRecording</key>
-			<real>581542876.51103306</real>
+			<real>581547721.77698803</real>
 			<key>timeStoppedRecording</key>
-			<real>581542934.967659</real>
+			<real>581547727.90617096</real>
 			<key>title</key>
 			<string>Building workspace Telebar with scheme Telebar and configuration Debug</string>
 			<key>uniqueIdentifier</key>
-			<string>E4DF28FB-9F4D-404E-A27A-C88B1DA7EBD6</string>
+			<string>40F00A2A-F7E4-488F-9849-47F6164CDE3F</string>
 		</dict>
 	</dict>
 </dict>
