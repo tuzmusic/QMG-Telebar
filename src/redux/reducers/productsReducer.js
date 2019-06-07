@@ -8,7 +8,8 @@ type ProductState = {
 };
 
 const initialState = {
-  products: []
+  products: [],
+  isLoading: false
 };
 
 export default function productsReducer(
@@ -17,7 +18,7 @@ export default function productsReducer(
 ): ProductState {
   switch (action.type) {
     case Actions.Product.Fetch.success:
-      return { ...state, products: action.products };
+      return { ...state, isLoading: false, products: action.products };
     default:
       (action: empty);
       return state;

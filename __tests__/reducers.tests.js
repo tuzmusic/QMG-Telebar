@@ -8,7 +8,10 @@ describe("Products reducer", () => {
 
   it("populates the products from a PRODUCT_FETCH_SUCCESS action", () => {
     expect(
-      productsReducer({}, { type: Actions.Product.Fetch.success, products })
-    ).toEqual({ products });
+      productsReducer(
+        { isLoading: true },
+        { type: Actions.Product.Fetch.success, products }
+      )
+    ).toEqual({ isLoading: false, products });
   });
 });
