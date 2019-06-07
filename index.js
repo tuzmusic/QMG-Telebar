@@ -1,4 +1,6 @@
-import React from "react";
+// @flow
+
+import React, { Component } from "react";
 import {
   AppRegistry,
   StyleSheet,
@@ -10,7 +12,14 @@ import {
 
 import { authorize, refresh, revoke } from "react-native-app-auth";
 
-export default class Telebar extends React.Component {
+type State = {
+  hasLoggedInOnce: boolean,
+  accessToken: ?string,
+  accessTokenExpirationDate: ?string,
+  refreshToken: ?string
+};
+
+export default class Telebar extends Component<{}, State> {
   state = {
     hasLoggedInOnce: false,
     accessToken: "",
