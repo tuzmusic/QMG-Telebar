@@ -1,5 +1,5 @@
 // @flow
-
+import html from "html-to-text";
 export default class Product {
   // #region TYPE PROPERTY DEFINITIONS
   id: number;
@@ -11,11 +11,7 @@ export default class Product {
   sku: string;
   price: number;
   regularPrice: number;
-  salePrice: number;
-  dateOnSaleFrom: ?Date;
-  dateOnSaleFromGmt: ?Date;
-  dateOnSaleTo: ?Date;
-  dateOnSaleToGmt: ?Date;
+  salePrice: ?number;
   onSale: boolean;
   relatedIds: number[];
   categories: { id: number, name: string, slug: string }[];
@@ -30,34 +26,7 @@ export default class Product {
   }[];
   // #endregion
 
-  constructor(json: {
-    id: number,
-    name: string,
-    slug: string,
-    featured: boolean,
-    description: string,
-    shortDescription: string,
-    sku: string,
-    price: number,
-    regularPrice: number,
-    salePrice: number,
-    dateOnSaleFrom: ?Date,
-    dateOnSaleFromGmt: ?Date,
-    dateOnSaleTo: ?Date,
-    dateOnSaleToGmt: ?Date,
-    onSale: boolean,
-    relatedIds: number[],
-    categories: { id: number, name: string, slug: string }[],
-    images: { id: number, src: string, name: string, alt: string }[],
-    attributes: {
-      id: number,
-      name: string,
-      position: number,
-      visible: boolean,
-      variation: boolean,
-      options: string[]
-    }[]
-  }) {
+  constructor(json: ProductJson) {
     this.id = json.id;
     this.name = json.name;
     this.slug = json.slug;
@@ -68,14 +37,78 @@ export default class Product {
     this.price = json.price;
     this.regularPrice = json.regularPrice;
     this.salePrice = json.salePrice;
-    this.dateOnSaleFrom = json.dateOnSaleFrom;
-    this.dateOnSaleFromGmt = json.dateOnSaleFromGmt;
-    this.dateOnSaleTo = json.dateOnSaleTo;
-    this.dateOnSaleToGmt = json.dateOnSaleToGmt;
     this.onSale = json.onSale;
     this.relatedIds = json.relatedIds;
     this.categories = json.categories;
     this.images = json.images;
     this.attributes = json.attributes;
   }
+
+  static fromApi(apiJson: OpenObject): ProductJson {
+    const {
+      id,
+      name,
+      slug,
+      featured,
+      sku,
+      categories,
+      images,
+      tags,
+      attributes
+    } = apiJson;
+
+    const description = html.fromString(apiJson.description, {
+      wordwrap: false
+    });
+    const shortDescription = html.fromString(apiJson.short_description, {
+      wordwrap: false
+    });
+
+    let json: ProductJson = {
+      id,
+      name,
+      slug,
+      featured,
+      description,
+      shortDescription,
+      sku,
+      price: Number(apiJson.price),
+      regularPrice: Number(apiJson.regular_price),
+      salePrice: Number(apiJson.sale_price) || null,
+      onSale: apiJson.on_sale,
+      relatedIds: apiJson.related_ids,
+      categories,
+      images,
+      tags,
+      attributes
+    };
+    return json;
+  }
 }
+
+type OpenObject = { [key: string]: any };
+
+type ProductJson = {
+  id: number,
+  name: string,
+  slug: string,
+  featured: boolean,
+  description: string,
+  shortDescription: string,
+  sku: string,
+  price: number,
+  regularPrice: number,
+  salePrice: ?number,
+  onSale: boolean,
+  relatedIds: number[],
+  categories: { id: number, name: string, slug: string }[],
+  images: { id: number, src: string, name: string, alt: string }[],
+  attributes: {
+    id: number,
+    name: string,
+    position: number,
+    visible: boolean,
+    variation: boolean,
+    options: string[]
+  }[]
+};
