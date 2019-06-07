@@ -1,6 +1,6 @@
 module.exports = function(api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo", "react-native", "flow"]
+    presets: ["babel-preset-expo", "@babel/preset-flow", "react-native"]
   };
 };
